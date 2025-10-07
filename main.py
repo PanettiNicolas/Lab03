@@ -1,4 +1,7 @@
 from autonoleggio import Autonoleggio
+from automobile import Automobile
+from noleggio import Noleggio
+
 from datetime import datetime
 
 def menu():
@@ -20,7 +23,8 @@ def main():
 
         if scelta == "1":
             nuovo_responsabile = input("Inserisci il nuovo responsabile: ")
-            # TODO: Aggiorna responsabile nel sistema
+            autonoleggio.responsabile = nuovo_responsabile
+            print(f"Il nuovo responsabile e' {autonoleggio.responsabile}")
 
         elif scelta == "2":
             while True:
@@ -45,6 +49,7 @@ def main():
 
         elif scelta == "4":
             automobili_ordinate = autonoleggio.automobili_ordinate_per_marca()
+            print("L'elenco della automobili ordinate per marca risulta essere: ")
             for a in automobili_ordinate:
                 print(f'- {a}')
 
