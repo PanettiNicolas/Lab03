@@ -23,8 +23,16 @@ def main():
 
         if scelta == "1":
             nuovo_responsabile = input("Inserisci il nuovo responsabile: ")
-            autonoleggio.responsabile = nuovo_responsabile
-            print(f"Il nuovo responsabile e' {autonoleggio.responsabile}")
+
+            try:
+                if not nuovo_responsabile.isalpha():
+                    raise ValueError("Il nome del responsabile inserito non è valido...")
+
+                autonoleggio.responsabile = nuovo_responsabile
+                print(f"Il nuovo responsabile è {autonoleggio.responsabile}")
+
+            except ValueError as e:
+                print("Errore:", e)
 
         elif scelta == "2":
             while True:
@@ -42,7 +50,7 @@ def main():
                 anno = int(input("Anno di Immatricolazione: ").strip())
                 posti = int(input("Numero di posti: ").strip())
             except ValueError:
-                print("Errore: inserire valori numerici validi per anno, pagine e sezione.")
+                print("Errore: inserire valori numerici validi per anno e posti")
                 continue
             automobile = autonoleggio.aggiungi_automobile(marca, modello, anno, posti)
             print(f"Automobile aggiunta: {automobile}")
